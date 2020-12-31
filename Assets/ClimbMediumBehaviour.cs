@@ -38,10 +38,11 @@ public class ClimbMediumBehaviour : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        // animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 1f);
+       
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -52,15 +53,8 @@ public class ClimbMediumBehaviour : StateMachineBehaviour
     // OnStateIK is called right after Animator.OnAnimatorIK()
     override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       // Implement code that sets up animation IK (inverse kinematics)
-        if (!grounded) {
-            animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 0);
-            animator.SetIKPositionWeight(AvatarIKGoal.RightFoot, 0);
-            return;
-        }
-
-        var place = animator.GetFloat("PlaceLeftFootOnObject");
-        if (place > 0) {
+        var plf = animator.GetFloat("PlaceLeftFootOnObject");
+        if (plf > 0) {
             var thing = climbSystem.hit;
             var lfd = thing.collider.ClosestPointOnBounds(new Vector3(leftFootDestination.x, climbSystem.ledgeY, leftFootDestination.z));
             // var rfd = thing.collider.ClosestPointOnBounds(new Vector3(rightFootDestination.x, climbSystem.ledgeY, rightFootDestination.z));
@@ -69,7 +63,24 @@ public class ClimbMediumBehaviour : StateMachineBehaviour
             animator.SetIKPosition(AvatarIKGoal.LeftFoot, lfd);
             // animator.SetIKPositionWeight(AvatarIKGoal.RightFoot, 1f);
             // animator.SetIKPosition(AvatarIKGoal.RightFoot, rfd);
-            return;
+        }
+
+        var plh = animator.GetFloat("PlaceLeftHandOnObject");
+        if (plh > 0) {
+            var thing = climbSystem.hit;
+            var lhd = thing.collider.ClosestPointOnBounds(new Vector3(collision.leftHand.transform.position.x, climbSystem.ledgeY, collision.leftHand.transform.position.z));
+
+            animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+            animator.SetIKPosition(AvatarIKGoal.LeftHand, lhd);
+        }
+
+        var prh = animator.GetFloat("PlaceRightHandOnObject");
+        if (prh > 0) {
+            var thing = climbSystem.hit;
+            var rhd = thing.collider.ClosestPointOnBounds(new Vector3(collision.rightHand.transform.position.x, climbSystem.ledgeY, collision.rightHand.transform.position.z));
+
+            animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+            animator.SetIKPosition(AvatarIKGoal.RightHand, rhd);
         }
     }
 }

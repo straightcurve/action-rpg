@@ -7,8 +7,10 @@ public class CharacterCollision : MonoBehaviour
     public Collider hip;
     public Collider rightLeg;
     public Collider rightFoot;
+    public Collider rightHand;
     public Collider leftLeg;
     public Collider leftFoot;
+    public Collider leftHand;
     public Collider feet;
 
 
@@ -24,6 +26,10 @@ public class CharacterCollision : MonoBehaviour
     public void DisableRightFoot() => ToggleRightFoot(false);
     public void ToggleRightFoot(bool enabled = false) => rightFoot.enabled = enabled;
 
+    public void EnableRightHand() => ToggleRightHand(true);
+    public void DisableRightHand() => ToggleRightHand(false);
+    public void ToggleRightHand(bool enabled = false) => rightHand.enabled = enabled;
+
     public void EnableLeftLeg() => ToggleLeftLeg(true);
     public void DisableLeftLeg() => ToggleLeftLeg(false);
     public void ToggleLeftLeg(bool enabled = false) => leftLeg.enabled = enabled;
@@ -31,6 +37,10 @@ public class CharacterCollision : MonoBehaviour
     public void EnableLeftFoot() => ToggleLeftFoot(true);
     public void DisableLeftFoot() => ToggleLeftFoot(false);
     public void ToggleLeftFoot(bool enabled = false) => leftFoot.enabled = enabled;
+
+    public void EnableLeftHand() => ToggleLeftHand(true);
+    public void DisableLeftHand() => ToggleLeftHand(false);
+    public void ToggleLeftHand(bool enabled = false) => leftHand.enabled = enabled;
 
     public void EnableFeet() => ToggleFeet(true);
     public void DisableFeet() => ToggleFeet(false);
