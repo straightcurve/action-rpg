@@ -10,6 +10,8 @@ public class Character : MonoBehaviour
     new Rigidbody rigidbody;
     public Vector3 direction;
 
+    private IMovementStrategy movement = new ThirdPersonMovementStrategy();
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,21 +25,11 @@ public class Character : MonoBehaviour
         if (direction.sqrMagnitude == 0)
             return;
 
-        //  https://en.wikipedia.org/wiki/Transformation_matrix#Rotation
-
-        var a = Mathf.Cos(45);
-        var b = Mathf.Sin(45);
-        var c = -b;
-        var d = a;
-
-        var dir = direction.normalized;
-        var actualDirection = new Vector3(dir.x * a + dir.z * b, 0f, dir.x * c + dir.z * d);
+        var actualDirection = movement.Compute(direction);
 
         rigidbody.MovePosition(rigidbody.position + actualDirection * speed * Time.fixedDeltaTime * Time.timeScale);
 
         transform.rotation = Quaternion.LookRotation(actualDirection);
-
-
     }
 
     // Update is called once per frame

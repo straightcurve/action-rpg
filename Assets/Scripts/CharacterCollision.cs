@@ -60,6 +60,8 @@ public class CharacterCollision : MonoBehaviour
                 Physics.IgnoreCollision(c, i);
             });
         });
+
+        DisableLeftHand();
     }
 
 }
