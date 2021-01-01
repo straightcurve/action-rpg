@@ -55,30 +55,18 @@ public class WallIKSolver: MonoBehaviour {
         if (lhIK) {
             animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
             animator.SetIKPosition(AvatarIKGoal.LeftHand, lhHit.point);
+
+            var no_idea = lhRayDirection;
+            no_idea.y = Vector3.up.y;
+
+            //  ^ from direction of hand but always pointed up
+
+            var projection = Vector3.ProjectOnPlane(no_idea, lhHit.normal);
+
+            Debug.DrawRay(lhHit.point, projection, Color.cyan);
+
             animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-            var projection = lhHit.collider.ClosestPointOnBounds(Vector3.ProjectOnPlane(lhRayDirection, lhHit.normal));
-            Debug.DrawRay(lhHit.point, projection, Color.yellow);
-
-            angle = Vector3.Angle(lhRayDirection, lhHit.normal);
-
-            var reflection = projection.normalized;
-            // if (angle > 175f) {
-            //     reflection.x = -reflection.x;
-            //     reflection.y = -reflection.y;
-            //     reflection.z = -reflection.z;
-            // }
-            reflection *= projection.magnitude;
-
-            //  TODO: calculate angle between ray dir and normal
-            //  and do stuff based on that
-
-            //  HAND POINTS IN -X DIRECTION THANKS
-
-            Debug.DrawRay(lhHit.point, reflection, Color.cyan);
-
-
-            animator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.LookRotation(reflection));
-            // animator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.AngleAxis(angle, Vector3.Cross(lhRayDirection, lhHit.normal)));
+            animator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.LookRotation(projection));
         }
     }
 
