@@ -62,6 +62,7 @@ public class CharacterCollision : MonoBehaviour
         });
 
         DisableLeftHand();
+        DisableRightHand();
     }
 
 }
