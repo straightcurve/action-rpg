@@ -42,7 +42,13 @@ public class RHIKSolver {
 
         Debug.DrawRay(rhHit.point, projection, Color.cyan);
 
+        var rotation = Quaternion.LookRotation(projection);
+        var euler = rotation.eulerAngles;
+        var angle = Vector3.Angle(owner.transform.forward, Vector3.forward);
+        euler.y = angle;
+        rotation.eulerAngles = euler;
+
         animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
-        animator.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.LookRotation(projection));
+        animator.SetIKRotation(AvatarIKGoal.RightHand, rotation);
     }
 }

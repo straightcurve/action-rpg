@@ -44,8 +44,8 @@ public class LHIKSolver {
 
         var rotation = Quaternion.LookRotation(projection);
         var euler = rotation.eulerAngles;
-        var a = Vector3.Angle(owner.transform.forward, Vector3.forward);
-        euler.y = a;
+        var angle = Vector3.Angle(owner.transform.forward, Vector3.forward);
+        euler.y = angle;
         rotation.eulerAngles = euler;
 
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
