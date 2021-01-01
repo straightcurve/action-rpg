@@ -10,10 +10,14 @@ public class WallIKSolver: MonoBehaviour {
 
     private LHIKSolver lHIKSolver;
     private RHIKSolver rHIKSolver;
+    public float colliderEdgeRange = .25f;
+    public float verticalIKPositionOffset = 1f;
 
     private void Awake() {
         lHIKSolver = new LHIKSolver(transform, head, range);
         rHIKSolver = new RHIKSolver(transform, head, range);
+
+        OnValidate();
     }
 
     private void Update() {
@@ -27,5 +31,13 @@ public class WallIKSolver: MonoBehaviour {
 
         lHIKSolver.UpdateIK();
         // rHIKSolver.UpdateIK();
+    }
+
+    private void OnValidate() {
+        if (lHIKSolver == null)
+            return;
+
+        lHIKSolver.verticalIKPositionOffset = verticalIKPositionOffset;
+        lHIKSolver.colliderEdgeRange = colliderEdgeRange;
     }
 }

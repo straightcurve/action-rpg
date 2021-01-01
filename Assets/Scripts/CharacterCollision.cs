@@ -10,7 +10,7 @@ public class CharacterCollision : MonoBehaviour
     public Collider rightHand;
     public Collider leftLeg;
     public Collider leftFoot;
-    public Collider leftHand;
+    public SphereCollider leftHand;
     public Collider feet;
 
 
@@ -61,7 +61,6 @@ public class CharacterCollision : MonoBehaviour
             });
         });
 
-        DisableLeftHand();
         DisableRightHand();
     }
 

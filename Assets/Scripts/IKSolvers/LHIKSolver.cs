@@ -9,7 +9,9 @@ public class LHIKSolver
     private Transform head;
     private float range;
     private Animator animator;
-    public float colliderEdgeRange = .25f;
+    public float colliderEdgeRange;
+    public float verticalIKPositionOffset;
+    private CharacterCollision collision;
 
     public LHIKSolver(Transform owner, Transform head, float range)
     {
@@ -17,6 +19,7 @@ public class LHIKSolver
         this.head = head;
         this.range = range;
         this.animator = owner.GetComponent<Animator>();
+        this.collision = owner.GetComponent<CharacterCollision>();
     }
 
     public void Update()
@@ -40,7 +43,11 @@ public class LHIKSolver
 
         //  set weight based on distance
         SetIKPositionWeightBasedOnDistance(hit.distance);
-        animator.SetIKPosition(AvatarIKGoal.LeftHand, hit.point);
+
+        var target = hit.point;
+        target.y += verticalIKPositionOffset;
+        target = hit.collider.ClosestPoint(target);
+        animator.SetIKPosition(AvatarIKGoal.LeftHand, target);
 
         var no_idea = rayDirection;
         no_idea.y = Vector3.up.y;

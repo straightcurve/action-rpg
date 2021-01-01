@@ -748,7 +748,8 @@ MonoBehaviour:
   useIK: 1
   head: {fileID: 963222724}
   range: 0.5
-  timeReaction: 1.75
+  colliderEdgeRange: 0.25
+  verticalIKPositionOffset: 0.13
 --- !u!1 &1429515766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,8 +1133,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
-  m_Center: {x: 0.06, y: 0, z: 0}
+  m_Radius: 0.03546354
+  m_Center: {x: 0.03, y: 0, z: 0}
 --- !u!1 &1891349775
 GameObject:
   m_ObjectHideFlags: 3
@@ -1354,5 +1355,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
-  m_Center: {x: -0.06, y: 0, z: 0}
+  m_Radius: 0.03546354
+  m_Center: {x: -0.03, y: 0, z: 0}
