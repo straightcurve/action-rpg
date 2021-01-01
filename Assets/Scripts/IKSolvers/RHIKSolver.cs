@@ -20,9 +20,9 @@ public class RHIKSolver {
         rhRayDirection = owner.forward + Vector3.down * 0.5f;
         rhIK = Physics.Raycast(head.position, rhRayDirection, out rhHit, range);
         if (rhIK) {
-            Debug.DrawRay(head.position, rhRayDirection, Color.green);
+            Debug.DrawRay(head.position, rhRayDirection * range, Color.green);
         } else {
-            Debug.DrawRay(head.position, rhRayDirection, Color.red);
+            Debug.DrawRay(head.position, rhRayDirection * range, Color.red);
         }
     }
 

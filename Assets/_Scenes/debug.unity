@@ -746,11 +746,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useIK: 1
-  lhIK: 0
-  rhIK: 0
-  head: {fileID: 1836066852}
-  range: 2
-  angle: -90
+  head: {fileID: 963222724}
+  range: 0.5
+  timeReaction: 1.75
 --- !u!1 &1429515766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,11 +1134,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.08
   m_Center: {x: 0.06, y: 0, z: 0}
---- !u!4 &1836066852 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 723392078006921875, guid: 98835ed1c516604d1bae3f79d2b28a9f, type: 3}
-  m_PrefabInstance: {fileID: 2037767882}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1891349775
 GameObject:
   m_ObjectHideFlags: 3
@@ -1246,6 +1239,22 @@ PrefabInstance:
     - target: {fileID: 1057868794, guid: 98835ed1c516604d1bae3f79d2b28a9f, type: 3}
       propertyPath: m_Constraints
       value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057868795, guid: 98835ed1c516604d1bae3f79d2b28a9f, type: 3}
+      propertyPath: m_Radius
+      value: 0.2576286
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057868795, guid: 98835ed1c516604d1bae3f79d2b28a9f, type: 3}
+      propertyPath: m_Center.x
+      value: -5.078782e-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057868795, guid: 98835ed1c516604d1bae3f79d2b28a9f, type: 3}
+      propertyPath: m_Center.y
+      value: 0.2576286
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057868795, guid: 98835ed1c516604d1bae3f79d2b28a9f, type: 3}
+      propertyPath: m_Center.z
+      value: -1.3948527e-13
       objectReference: {fileID: 0}
     - target: {fileID: 1057868797, guid: 98835ed1c516604d1bae3f79d2b28a9f, type: 3}
       propertyPath: m_Enabled
