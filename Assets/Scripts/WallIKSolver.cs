@@ -26,6 +26,6 @@ public class WallIKSolver: MonoBehaviour {
             return;
 
         lHIKSolver.UpdateIK();
-        rHIKSolver.UpdateIK();
+        // rHIKSolver.UpdateIK();
     }
 }

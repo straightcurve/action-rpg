@@ -20,9 +20,9 @@ public class LHIKSolver {
         lhRayDirection = owner.forward + Vector3.down * 0.5f;
         lhIK = Physics.Raycast(head.position, lhRayDirection, out lhHit, range);
         if (lhIK) {
-            Debug.DrawRay(head.position, lhRayDirection, Color.green);
+            Debug.DrawRay(head.position, lhRayDirection * range, Color.green);
         } else {
-            Debug.DrawRay(head.position, lhRayDirection, Color.red);
+            Debug.DrawRay(head.position, lhRayDirection * range, Color.red);
         }
     }
 
@@ -42,7 +42,13 @@ public class LHIKSolver {
 
         Debug.DrawRay(lhHit.point, projection, Color.cyan);
 
+        var rotation = Quaternion.LookRotation(projection);
+        var euler = rotation.eulerAngles;
+        var a = Vector3.Angle(owner.transform.forward, Vector3.forward);
+        euler.y = a;
+        rotation.eulerAngles = euler;
+
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-        animator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.LookRotation(projection));
+        animator.SetIKRotation(AvatarIKGoal.LeftHand, rotation);
     }
 }
